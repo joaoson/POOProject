@@ -79,7 +79,8 @@ public class Montadora {
         String SEPARADOR = ",";
         List<List<String>> tabela = new ArrayList<>();
         try
-        {
+        { 
+            
             FileReader arquivo = new FileReader(NOME_ARQUIVO);
             BufferedReader buffer = new BufferedReader(arquivo);
 
