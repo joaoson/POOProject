@@ -2,11 +2,16 @@ package product_entities;
 
 import labour_entities.Employee;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Montadora {
 
-    public Montadora(String name,double saldo){
+    public Montadora(String name, double saldo){
         this.name = name;
         this.saldo = saldo;
     }
@@ -48,9 +53,52 @@ public class Montadora {
         }
     }
 
-    public void writeEmployee(){
+    public void writeEmployee(String name, String password, String login, String dateOfBirth, String gender){
         Employee employee;
 
+        String NOME_ARQUIVO = "./src/application/funcionarios.csv";
+        String SEPARADOR = ",";
+        List<List<String>> tabela = new ArrayList<>();
+        try
+        {
+            FileWriter arquivo = new FileWriter(NOME_ARQUIVO, true);
 
+            arquivo.write("\n"+name + "," + password + "," + login + "," + dateOfBirth+ "," +gender);
+
+            arquivo.flush();
+            arquivo.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void readEmployees(){
+        String NOME_ARQUIVO = "./src/application/funcionarios.csv";
+        String SEPARADOR = ",";
+        List<List<String>> tabela = new ArrayList<>();
+        try
+        { 
+            
+            FileReader arquivo = new FileReader(NOME_ARQUIVO);
+            BufferedReader buffer = new BufferedReader(arquivo);
+
+            String cabecalho = buffer.readLine();
+            while (buffer.ready()){
+                String linha = buffer.readLine();
+                String[] tokens = linha.split(SEPARADOR);
+                System.out.println(Arrays.toString(tokens));
+                List<String> registro = Arrays.asList(tokens);
+                tabela.add(registro);
+            }
+
+
+            System.out.println(arquivo);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }
