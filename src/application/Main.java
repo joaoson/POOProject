@@ -37,6 +37,7 @@ public class Main extends JFrame {
         System.out.println(montadora.getSaldo());
 
         montadora.writeEmployee("Joao Ricardo","1234","JoaoRic","19/10/2001","Homem");
+        montadora.readEmployees();
 
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {

@@ -1,6 +1,7 @@
 package product_entities;
 
 import labour_entities.Employee;
+import labour_entities.Worker;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -18,7 +19,7 @@ public class Montadora {
 
     private String name;
     private double saldo;
-    private ArrayList<Employee> employees;
+    private ArrayList<Employee> employees = new ArrayList<>();
     private ArrayList<Car> carros = new ArrayList<Car>();
 
     public double getSaldo() {
@@ -88,17 +89,16 @@ public class Montadora {
             while (buffer.ready()){
                 String linha = buffer.readLine();
                 String[] tokens = linha.split(SEPARADOR);
-                System.out.println(Arrays.toString(tokens));
                 List<String> registro = Arrays.asList(tokens);
                 tabela.add(registro);
+                Employee funcionario = new Worker(registro.get(0),registro.get(1),registro.get(2),registro.get(3),registro.get(4));
+                employees.add(funcionario);
             }
-
-
-            System.out.println(arquivo);
         }
         catch(Exception e)
         {
             e.printStackTrace();
         }
     }
+
 }

@@ -7,10 +7,10 @@ public abstract class Employee {
     protected String name;
     protected String password;
     protected String login;
-    protected Calendar dateOfBirth;
+    protected String dateOfBirth;
     protected String gender;
 
-    public Employee(String name, String password, String login, Calendar dateOfBirth, String gender) {
+    public Employee(String name, String password, String login, String dateOfBirth, String gender) {
         this.name = name;
         this.password = password;
         this.login = login;
