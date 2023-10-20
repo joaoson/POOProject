@@ -2,6 +2,8 @@ package product_entities;
 
 import labour_entities.Employee;
 import labour_entities.Worker;
+import product_entities.components_entities.Electronics;
+import product_entities.supplier_entities.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -16,6 +18,11 @@ public class Montadora {
         this.name = name;
         this.saldo = saldo;
     }
+
+    private Supplier tires;
+    private Supplier engines;
+    private Supplier eletronics;
+    private Supplier smallComps;
 
     private String name;
     private double saldo;
@@ -101,4 +108,18 @@ public class Montadora {
         }
     }
 
+    public void hireSupplier(Supplier supplier){
+        if (supplier instanceof TireSupplier) {
+            tires = supplier;
+        }
+        else if(supplier instanceof ElectronicsSupplier){
+            eletronics = supplier;
+        }
+        else if(supplier instanceof EngineSupplier){
+            engines = supplier;
+        }
+        else if(supplier instanceof SCSupplier){
+            smallComps = supplier;
+        }
+    }
 }

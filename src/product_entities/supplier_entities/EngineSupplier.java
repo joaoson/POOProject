@@ -3,7 +3,7 @@ package product_entities.supplier_entities;
 import product_entities.components_entities.Component;
 import product_entities.components_entities.*;
 
-public class EngineSupplier {
+public class EngineSupplier extends Supplier{
 
     private Component engine;
     public EngineSupplier(String nameComponent, double priceComponent) {

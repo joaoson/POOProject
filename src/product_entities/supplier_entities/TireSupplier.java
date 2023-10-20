@@ -3,7 +3,7 @@ package product_entities.supplier_entities;
 import product_entities.components_entities.Component;
 import product_entities.components_entities.Tire;
 
-public class TireSupplier {
+public class TireSupplier extends Supplier{
     private Component tire;
     public TireSupplier(String nameComponent, double priceComponent) {
         tire = new Tire(nameComponent,priceComponent);

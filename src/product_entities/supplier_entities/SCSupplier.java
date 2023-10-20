@@ -2,7 +2,7 @@ package product_entities.supplier_entities;
 import product_entities.components_entities.Component;;
 import product_entities.components_entities.SmallComponents;
 
-public class SCSupplier{
+public class SCSupplier extends Supplier{
 
     private Component smallComp;
     public SCSupplier(String nameComponent, double priceComponent) {
