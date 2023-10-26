@@ -1,14 +1,12 @@
 package application;
 
-public class ManagerDashboard {
-
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Vector;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
     /*
      * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -350,4 +348,4 @@ import javax.swing.table.DefaultTableModel;
         // End of variables declaration
     }
 
-}
+
