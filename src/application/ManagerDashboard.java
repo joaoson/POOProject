@@ -1,11 +1,14 @@
 package application;
 
+import product_entities.Montadora;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Random;
 import java.util.Vector;
 
     /*
@@ -143,9 +146,6 @@ import java.util.Vector;
 
             tableOrders.setModel(new javax.swing.table.DefaultTableModel(
                     new Object [][] {
-                            {null, null, null, null},
-                            {null, null, null, null},
-                            {null, null, null, null},
                             {null, null, null, null}
                     },
                     new String [] {
@@ -224,8 +224,12 @@ import java.util.Vector;
         private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {
             String carModel = carModelText.getText();
             String quantity = quantityText.getText();
-            //===============Inserir o sorteador de funcionários=================
-            //=========================Inserir o custo===========================
+
+            Random random = new Random();
+            int numero = random.nextInt(0, Montadora.getEmployees().size());
+
+            System.out.println(numero);
+            System.out.println(Montadora.getEmployees().size());
 
             if (carModel.isEmpty() || quantity.isEmpty()){
                 JOptionPane.showMessageDialog(this,
@@ -290,6 +294,7 @@ import java.util.Vector;
                 for (int i = 0; i < tableData.size(); i++){
                     Vector row = tableData.get(i);
                     model.addRow(new Object[] {row.get(1), row.get(2), row.get(3)});
+                    System.out.println("passou");
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();

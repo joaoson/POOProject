@@ -27,7 +27,7 @@ public class Montadora {
 
     private String name;
     private double saldo;
-    private ArrayList<Employee> employees = new ArrayList<>();
+    private static ArrayList<Employee> employees = new ArrayList<>();
     private ArrayList<Car> carros = new ArrayList<Car>();
 
     public double getSaldo() {
@@ -153,6 +153,7 @@ public class Montadora {
     }
 
     public void readEmployees(){
+        employees.clear();
         String NOME_ARQUIVO = "./src/application/funcionarios.csv";
         String SEPARADOR = ",";
         List<List<String>> tabela = new ArrayList<>();
@@ -213,5 +214,9 @@ public class Montadora {
 
     public void decreaseSaldo(double valor) {
         this.saldo -= valor;
+    }
+
+    public static ArrayList<Employee> getEmployees() {
+        return Montadora.employees;
     }
 }

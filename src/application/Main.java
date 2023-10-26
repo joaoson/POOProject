@@ -24,6 +24,7 @@ public class Main extends JFrame {
 
     public static void main(String[] args) {
         Montadora montadora = new Montadora("Renault",200000);
+        montadora.readEmployees();
         montadora.makeCar(20,new SUV(200));
         montadora.sellCar(10);
         montadora.sellCar(10);
@@ -42,8 +43,6 @@ public class Main extends JFrame {
         System.out.println(montadora.getEletronics().getComponent().getStock());
         montadora.test(new SUV(200));
         montadora.makeCar(2,new SUV(200));
-
-        montadora.readEmployees();
 
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
