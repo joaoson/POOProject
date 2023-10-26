@@ -1,6 +1,8 @@
-package application;
+package application;/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 
-import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -8,20 +10,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Vector;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
 /**
  *
  * @author Felpi
  */
 public class WorkerDashboard extends javax.swing.JFrame {
 
-
     /**
-     * Creates new form ManagerDashboard
+     * Creates new form WorkerDashboard
      */
     public WorkerDashboard() {
         initComponents();
@@ -38,20 +34,34 @@ public class WorkerDashboard extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        carModel = new javax.swing.JLabel();
-        quantityText = new javax.swing.JTextField();
-        quantity = new javax.swing.JLabel();
-        carModelText = new javax.swing.JTextField();
-        btnClear = new javax.swing.JButton();
-        btnSend = new javax.swing.JButton();
+        research = new javax.swing.JPanel();
+        query = new javax.swing.JLabel();
+        searchInput = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableOrders = new javax.swing.JTable();
-        carMade = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Worker Dashboard");
-        setMinimumSize(new java.awt.Dimension(1003, 674));
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Orders");
+
+        research.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Research", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
+        research.setOpaque(false);
+
+        query.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        query.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        query.setText("Worker's or Car's name");
+        query.setToolTipText("");
+
+        searchInput.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        searchInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchInputActionPerformed(evt);
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -61,105 +71,56 @@ public class WorkerDashboard extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Orders");
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "New Order\n", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
-        jPanel3.setOpaque(false);
-
-        carModel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        carModel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        carModel.setText("Car model:");
-
-        quantityText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        quantityText.setAlignmentX(0.1F);
-        quantityText.addActionListener(new java.awt.event.ActionListener() {
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quantityTextActionPerformed(evt);
+                btnSearchActionPerformed(evt);
             }
         });
 
-        quantity.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        quantity.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        quantity.setText("Quantity:");
-        quantity.setToolTipText("");
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setText("Search by:");
 
-        carModelText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        carModelText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                carModelTextActionPerformed(evt);
-            }
-        });
-
-        btnClear.setText("Clear");
-        btnClear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClearActionPerformed(evt);
-            }
-        });
-
-        btnSend.setText("Send");
-        btnSend.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSendActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(carModel)
-                                        .addComponent(quantity, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(quantityText, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
-                                        .addComponent(carModelText))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(16, 16, 16))
+        javax.swing.GroupLayout researchLayout = new javax.swing.GroupLayout(research);
+        research.setLayout(researchLayout);
+        researchLayout.setHorizontalGroup(
+                researchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(researchLayout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addGroup(researchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(researchLayout.createSequentialGroup()
+                                                .addComponent(jLabel5)
+                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(researchLayout.createSequentialGroup()
+                                                .addComponent(query)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(searchInput)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(16, 16, 16))))
         );
-        jPanel3Layout.setVerticalGroup(
-                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(carModel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(carModelText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(quantityText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnSend))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        researchLayout.setVerticalGroup(
+                researchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(researchLayout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(researchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(query, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnSearch))
+                                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         tableOrders.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null}
                 },
                 new String [] {
-                        "Worker", "Car Model", "Quantity", "Cost"
+                        "Worker", "Car Model", "Quantity", "Cost", "Status"
                 }
         ));
         jScrollPane1.setViewportView(tableOrders);
-
-        carMade.setText("Car Made");
-        carMade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                carMadeActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -169,14 +130,11 @@ public class WorkerDashboard extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jScrollPane1)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(carMade)
-                                                .addGap(12, 12, 12))))
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(research, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1088, Short.MAX_VALUE))
+                                                .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,12 +142,9 @@ public class WorkerDashboard extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(research, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(carMade, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap())
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -208,54 +163,17 @@ public class WorkerDashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void quantityTextActionPerformed(java.awt.event.ActionEvent evt) {
+    private void searchInputActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void carModelTextActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {
 
-    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {
-        carModelText.setText("");
-        quantityText.setText("");
-    }
-
-    private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {
-        String carModel = carModelText.getText();
-        String quantity = quantityText.getText();
-        //===============Inserir o sorteador de funcionários=================
-        //=========================Inserir o custo===========================
-
-        if (carModel.isEmpty() || quantity.isEmpty()){
-            JOptionPane.showMessageDialog(this,
-                    "Please enter all fields",
-                    "Try again",
-                    JOptionPane.ERROR_MESSAGE);
-        } else {
-            DefaultTableModel model = (DefaultTableModel) tableOrders.getModel();
-            model.addRow(new Object [] {carModel, quantity});
-
-            carModelText.setText("");
-            quantityText.setText("");
-        }
-    }
-
-    private void carMadeActionPerformed(java.awt.event.ActionEvent evt) {
-        int row = tableOrders.getSelectedRow();
-
-        if (row < 0) {
-            JOptionPane.showMessageDialog (this,
-                    "No row is selected! Please select one row.",
-                    "Select row.",
-                    JOptionPane.ERROR_MESSAGE);
-        } else {
-            DefaultTableModel model = (DefaultTableModel) tableOrders.getModel ();
-            model.removeRow(row);
-        }
     }
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {
+        System.out.println("rodou");
+        dispose();
         DefaultTableModel model = (DefaultTableModel) tableOrders.getModel();
         Vector <Vector> tableData = model.getDataVector();
 
@@ -285,17 +203,19 @@ public class WorkerDashboard extends javax.swing.JFrame {
 
             input.close();
             file.close();
-
+            System.out.println("Passou");
             DefaultTableModel model = (DefaultTableModel)tableOrders.getModel();
             for (int i = 0; i < tableData.size(); i++){
                 Vector row = tableData.get(i);
-                model.addRow(new Object[] {row.get(1), row.get(2), row.get(3)});
+                model.addRow(new Object[] {row.get(0), row.get(1)});
+                //System.out.println("Passou");
             }
         } catch (Exception ex) {
             ex.printStackTrace();
 
         }
     }
+
 
     /**
      * @param args the command line arguments
@@ -314,13 +234,13 @@ public class WorkerDashboard extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManagerDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WorkerDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManagerDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WorkerDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManagerDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WorkerDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManagerDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WorkerDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -333,20 +253,23 @@ public class WorkerDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify
-    private javax.swing.JButton btnClear;
-    private javax.swing.JButton btnSend;
-    private javax.swing.JButton carMade;
-    private javax.swing.JLabel carModel;
-    private javax.swing.JTextField carModelText;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel quantity;
-    private javax.swing.JTextField quantityText;
+    private javax.swing.JLabel query;
+    private javax.swing.JPanel research;
+    private javax.swing.JTextField searchInput;
     private javax.swing.JTable tableOrders;
     // End of variables declaration
 }
-
-
-

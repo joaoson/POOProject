@@ -66,7 +66,7 @@ import java.util.Vector;
 
             jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
             jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            jLabel1.setText("Orders");
+            jLabel1.setText("New Orders");
 
             jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "New Order\n", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
             jPanel3.setOpaque(false);
