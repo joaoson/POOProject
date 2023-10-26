@@ -4,7 +4,7 @@ import product_entities.components_entities.SmallComponents;
 
 public class SCSupplier extends Supplier{
 
-    private Component smallComp;
+    private SmallComponents smallComp;
     public SCSupplier(String nameComponent, double priceComponent) {
         smallComp = new SmallComponents(nameComponent,priceComponent);
     }
@@ -14,9 +14,13 @@ public class SCSupplier extends Supplier{
             return 0;
         }else {
             for (int i = 0; i < quantity; i++) {
-                Component smallComp = new SmallComponents();
+                SmallComponents smallComp = new SmallComponents();
             }
             return smallComp.getPrice()*quantity;
         }
+    }
+
+    public SmallComponents getComponent() {
+        return smallComp;
     }
 }

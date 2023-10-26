@@ -5,7 +5,7 @@ import product_entities.components_entities.*;
 
 public class EngineSupplier extends Supplier{
 
-    private Component engine;
+    private Engine engine;
     public EngineSupplier(String nameComponent, double priceComponent) {
         engine = new Engine(nameComponent,priceComponent);
     }
@@ -15,11 +15,13 @@ public class EngineSupplier extends Supplier{
             return 0;
         }else {
             for (int i = 0; i < quantity; i++) {
-                Component engine = new Engine();
+                Engine engine = new Engine();
             }
             return engine.getPrice()*quantity;
         }
     }
-
+    public Engine getComponent() {
+        return engine;
+    }
 
 }

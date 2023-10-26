@@ -3,6 +3,9 @@ package application;
 import product_entities.Car;
 import product_entities.Montadora;
 import product_entities.Sedan;
+import product_entities.supplier_entities.ElectronicsSupplier;
+import product_entities.supplier_entities.EngineSupplier;
+import product_entities.supplier_entities.SCSupplier;
 import product_entities.supplier_entities.TireSupplier;
 
 import javax.swing.*;
@@ -41,6 +44,22 @@ public class Main extends JFrame {
         montadora.readEmployees();
 
         montadora.hireSupplier(new TireSupplier("pneu",20));
+        montadora.hireSupplier(new EngineSupplier("motor",200));
+        double compra = montadora.getTires().buyComponent(20,50000);
+        double compra2 = montadora.getEngines().buyComponent(30,50000);
+
+        System.out.println(montadora.getSaldo());
+        montadora.decreaseSaldo(compra);
+        montadora.decreaseSaldo(compra2);
+        System.out.println(montadora.getSaldo());
+        montadora.hireSupplier(new SCSupplier("Small Components",300));
+        montadora.hireSupplier(new ElectronicsSupplier("Electronics",1000));
+        double compra3 = montadora.getSmallComps().buyComponent(5,50000);
+        double compra4 = montadora.getEletronics().buyComponent(12,50000);
+        System.out.println(montadora.getTires().getComponent().getStock());
+        System.out.println(montadora.getEngines().getComponent().getStock());
+        System.out.println(montadora.getSmallComps().getComponent().getStock());
+        System.out.println(montadora.getEletronics().getComponent().getStock());
 
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {

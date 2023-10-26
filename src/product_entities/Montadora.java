@@ -2,6 +2,7 @@ package product_entities;
 
 import labour_entities.Employee;
 import labour_entities.Worker;
+import product_entities.components_entities.Component;
 import product_entities.components_entities.Electronics;
 import product_entities.supplier_entities.*;
 
@@ -19,10 +20,10 @@ public class Montadora {
         this.saldo = saldo;
     }
 
-    private Supplier tires;
-    private Supplier engines;
-    private Supplier eletronics;
-    private Supplier smallComps;
+    private TireSupplier tires;
+    private EngineSupplier engines;
+    private ElectronicsSupplier eletronics;
+    private SCSupplier smallComps;
 
     private String name;
     private double saldo;
@@ -108,18 +109,55 @@ public class Montadora {
         }
     }
 
-    public void hireSupplier(Supplier supplier){
-        if (supplier instanceof TireSupplier) {
-            tires = supplier;
-        }
-        else if(supplier instanceof ElectronicsSupplier){
-            eletronics = supplier;
-        }
-        else if(supplier instanceof EngineSupplier){
-            engines = supplier;
-        }
-        else if(supplier instanceof SCSupplier){
-            smallComps = supplier;
-        }
+//    public void hireSupplier(Supplier supplier){
+//        if (supplier instanceof TireSupplier) {
+//            tires = supplier;
+//        }
+//        else if(supplier instanceof ElectronicsSupplier){
+//            eletronics = supplier;
+//        }
+//        else if(supplier instanceof EngineSupplier){
+//            engines = supplier;
+//        }
+//        else if(supplier instanceof SCSupplier){
+//            smallComps = supplier;
+//        }
+//    }
+
+    public void hireSupplier(TireSupplier tires){
+        this.tires = tires;
+    }
+    public void hireSupplier(EngineSupplier engine){
+        this.engines = engine;
+    }
+    public void hireSupplier(SCSupplier smallC){
+        this.smallComps = smallC;
+    }
+    public void hireSupplier(ElectronicsSupplier eletronics){
+        this.eletronics = eletronics;
+    }
+
+    public int checkStockPart(Component component){
+        return component.getStock();
+    }
+
+    public TireSupplier getTires() {
+        return tires;
+    }
+
+    public EngineSupplier getEngines() {
+        return engines;
+    }
+
+    public ElectronicsSupplier getEletronics() {
+        return eletronics;
+    }
+
+    public SCSupplier getSmallComps() {
+        return smallComps;
+    }
+
+    public void decreaseSaldo(double valor) {
+        this.saldo -= valor;
     }
 }

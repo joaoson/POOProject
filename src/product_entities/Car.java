@@ -1,5 +1,7 @@
 package product_entities;
 
+import product_entities.components_entities.Component;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -10,6 +12,8 @@ public abstract class Car {
     protected double weight;
     protected String color;
     protected int chassi;
+
+    protected Component components;
     protected Random random = new Random();
     //protected ArrayList<Components> components;
 

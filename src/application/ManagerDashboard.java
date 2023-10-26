@@ -50,7 +50,7 @@ import java.util.Vector;
             carMade = new javax.swing.JButton();
 
             setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-            setTitle("Worker Dashboard");
+            setTitle("Manager Dashboard");
             setMinimumSize(new java.awt.Dimension(1003, 674));
             addWindowListener(new java.awt.event.WindowAdapter() {
                 public void windowClosing(java.awt.event.WindowEvent evt) {

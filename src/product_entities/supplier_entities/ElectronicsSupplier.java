@@ -4,7 +4,7 @@ import product_entities.components_entities.Component;
 import product_entities.components_entities.Electronics;
 
 public class ElectronicsSupplier extends Supplier{
-    private Component electronic;
+    private Electronics electronic;
     public ElectronicsSupplier(String nameComponent, double priceComponent) {
         electronic = new Electronics(nameComponent,priceComponent);
     }
@@ -14,9 +14,13 @@ public class ElectronicsSupplier extends Supplier{
             return 0;
         }else {
             for (int i = 0; i < quantity; i++) {
-                Component Electronic = new Electronics();
+                Electronics Electronic = new Electronics();
             }
             return electronic.getPrice()*quantity;
         }
+    }
+
+    public Electronics getComponent() {
+        return electronic;
     }
 }
