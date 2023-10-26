@@ -62,7 +62,6 @@ public class Main extends JFrame {
 
         String NOME_ARQUIVO = "./src/application/funcionarios.csv";
         String SEPARADOR = ",";
-        List<List<String>> tabela = new ArrayList<>();
         try
         {
             FileReader arquivo = new FileReader(NOME_ARQUIVO);
@@ -190,8 +189,14 @@ public class Main extends JFrame {
     }// </editor-fold>
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-        jTextField1.setText("");
-        jLabel5.setText("oi");
+        for (List<String> tabela1 : tabela) {
+            System.out.println(tabela1);
+            if(jTextField1.getText().equals(tabela1.get(2)) && jTextField2.getText().equals(tabela1.get(1))&& tabela1.get(5).equals("CEO")){
+                ManagerDashboard loggedinManager = new ManagerDashboard();
+                loggedinManager.show();
+                dispose();
+            }
+        }
     }
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,6 +209,7 @@ public class Main extends JFrame {
 
 
     // Variables declaration - do not modify
+    private static List<List<String>> tabela = new ArrayList<>();
     private JButton jButton1;
     private JLabel jLabel1;
     private JLabel jLabel2;
