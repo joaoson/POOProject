@@ -193,7 +193,7 @@ public class Main extends JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         for (List<String> tabela1 : tabela) {
             System.out.println(tabela1);
-            if(jTextField1.getText().equals(tabela1.get(2)) && jTextField2.getText().equals(tabela1.get(1))&& tabela1.get(5).equals("CEO")){
+            if(jTextField1.getText().equals(tabela1.get(2)) && jTextField2.getText().equals(tabela1.get(1)) && (tabela1.get(5).equals("CEO") || tabela1.get(5).equals("Manager")) ){
                 ManagerDashboard loggedinManager = new ManagerDashboard();
                 loggedinManager.show();
                 dispose();
