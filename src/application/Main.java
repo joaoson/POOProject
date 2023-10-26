@@ -33,6 +33,9 @@ public class Main extends JFrame {
         montadora.hireSupplier(new TireSupplier("TireSupplier",200));
         montadora.hireSupplier(new EngineSupplier("EngineSupplier",200));
 
+        montadora.buyTires(60);
+        System.out.println(montadora.getTires().getComponent().getStock());
+
         double compra6 = montadora.getEletronics().buyComponent(20,50000);
         System.out.println(montadora.getEletronics().getComponent().getStock());
         montadora.getEletronics().getComponent().deductStock(6);
@@ -43,22 +46,6 @@ public class Main extends JFrame {
 
         montadora.writeEmployee("Joao Ricardo","1234","JoaoRic","19/10/2001","Homem");
         montadora.readEmployees();
-
-        montadora.hireSupplier(new TireSupplier("pneu",20));
-        montadora.hireSupplier(new EngineSupplier("motor",200));
-        double compra = montadora.getTires().buyComponent(20,50000);
-        double compra2 = montadora.getEngines().buyComponent(30,50000);
-
-        System.out.println(montadora.getSaldo());
-        montadora.decreaseSaldo(compra);
-        montadora.decreaseSaldo(compra2);
-        System.out.println(montadora.getSaldo());
-        double compra3 = montadora.getSmallComps().buyComponent(5,50000);
-        double compra4 = montadora.getEletronics().buyComponent(12,50000);
-        System.out.println(montadora.getTires().getComponent().getStock());
-        System.out.println(montadora.getEngines().getComponent().getStock());
-        System.out.println(montadora.getSmallComps().getComponent().getStock());
-        System.out.println(montadora.getEletronics().getComponent().getStock());
 
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {

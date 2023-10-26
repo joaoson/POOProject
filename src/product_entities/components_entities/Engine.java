@@ -28,4 +28,8 @@ public class Engine extends Component{
         return price;
     }
 
+    public void deductStock(int quantidade){
+        Engine.stockEngine -= quantidade;
+    }
+
 }

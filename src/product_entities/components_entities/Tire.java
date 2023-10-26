@@ -27,4 +27,8 @@ public class Tire extends Component{
         return price;
     }
 
+    public void deductStock(int quantidade){
+        Tire.stockTire -= quantidade;
+    }
+
 }

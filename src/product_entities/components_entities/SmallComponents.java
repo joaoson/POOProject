@@ -28,4 +28,8 @@ public class SmallComponents extends Component{
         return price;
     }
 
+    public void deductStock(int quantidade){
+        SmallComponents.stockSC -= quantidade;
+    }
+
 }

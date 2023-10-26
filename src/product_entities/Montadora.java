@@ -51,6 +51,51 @@ public class Montadora {
         }
     }
 
+    public void buyTires(int quantity){
+        if(tires != null){
+            if(tires.getComponent().getPrice()*quantity>saldo){
+                return;
+            }
+            else{
+                tires.buyComponent(quantity, this.saldo);
+                decreaseSaldo(tires.getComponent().getPrice()*quantity);
+            }
+        }
+    }
+    public void buyElectronics(int quantity){
+        if(eletronics != null){
+            if(eletronics.getComponent().getPrice()*quantity>saldo){
+                return;
+            }
+            else{
+                eletronics.buyComponent(quantity, this.saldo);
+                decreaseSaldo(eletronics.getComponent().getPrice()*quantity);
+            }
+        }
+    }
+    public void buySmallComp(int quantity){
+        if(smallComps != null){
+            if(smallComps.getComponent().getPrice()*quantity>saldo){
+                return;
+            }
+            else{
+                smallComps.buyComponent(quantity, this.saldo);
+                decreaseSaldo(smallComps.getComponent().getPrice()*quantity);
+            }
+        }
+    }
+    public void buyEngine(int quantity){
+        if(engines != null){
+            if(engines.getComponent().getPrice()*quantity>saldo){
+                return;
+            }
+            else{
+                engines.buyComponent(quantity, this.saldo);
+                decreaseSaldo(engines.getComponent().getPrice()*quantity);
+            }
+        }
+    }
+
     public void makeCar(int quantity, Car carro){
         if(carro.getPrice()* quantity > saldo){
             return;
@@ -59,6 +104,11 @@ public class Montadora {
             if (tires != null && eletronics != null && engines != null && smallComps != null) {
                 if(tires.getComponent().getStock() > carro.getTireCount() && engines.getComponent().getStock() > carro.getEngineCount() && smallComps.getComponent().getStock() > carro.getScCompCount() && eletronics.getComponent().getStock() > carro.getElectronicsCount()) {
                     for (int i = 0; i < quantity; i++) {
+                        tires.getComponent().deductStock(carro.getTireCount());
+                        engines.getComponent().deductStock(carro.getEngineCount());
+                        eletronics.getComponent().deductStock(carro.getElectronicsCount());
+                        smallComps.getComponent().deductStock(carro.getScCompCount());
+
                         saldo -= carro.getPrice();
                         carros.add(carro);
                     }
