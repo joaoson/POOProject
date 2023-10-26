@@ -43,8 +43,6 @@ public class Main extends JFrame {
         montadora.test(new SUV(200));
         montadora.makeCar(2,new SUV(200));
 
-
-        montadora.writeEmployee("Joao Ricardo","1234","JoaoRic","19/10/2001","Homem");
         montadora.readEmployees();
 
         try {
