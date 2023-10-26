@@ -28,4 +28,8 @@ public class Electronics extends Component{
         return price;
     }
 
+    public void deductStock(int quantidade){
+        Electronics.stockEletronic -= quantidade;
+    }
+
 }

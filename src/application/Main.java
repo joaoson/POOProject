@@ -34,6 +34,9 @@ public class Main extends JFrame {
         montadora.hireSupplier(new EngineSupplier("EngineSupplier",200));
 
         double compra6 = montadora.getEletronics().buyComponent(20,50000);
+        System.out.println(montadora.getEletronics().getComponent().getStock());
+        montadora.getEletronics().getComponent().deductStock(6);
+        System.out.println(montadora.getEletronics().getComponent().getStock());
         montadora.test(new SUV(200));
         montadora.makeCar(2,new SUV(200));
 
