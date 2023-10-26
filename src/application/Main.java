@@ -2,6 +2,7 @@ package application;
 
 import product_entities.Car;
 import product_entities.Montadora;
+import product_entities.SUV;
 import product_entities.Sedan;
 import product_entities.supplier_entities.ElectronicsSupplier;
 import product_entities.supplier_entities.EngineSupplier;
@@ -22,23 +23,20 @@ public class Main extends JFrame {
 
 
     public static void main(String[] args) {
-        Car carro = new Sedan(313);
-        Car joao = new Sedan();
-        System.out.println(joao.getPrice());
-        System.out.println(joao.getChassi());
-        System.out.println(carro.getChassi());
         Montadora montadora = new Montadora("Renault",200000);
-        montadora.makeCar(20,carro);
-        System.out.println(montadora.getCarros().size());
-        System.out.println(montadora.getSaldo());
+        montadora.makeCar(20,new SUV(200));
         montadora.sellCar(10);
-        System.out.println(montadora.getCarros().size());
-        System.out.println(montadora.getSaldo());
-        System.out.println(montadora.getCarros());
+        montadora.sellCar(10);
 
-        montadora.sellCar(10);
-        System.out.println(montadora.getCarros().size());
-        System.out.println(montadora.getSaldo());
+        montadora.hireSupplier(new ElectronicsSupplier("Electronic",200));
+        montadora.hireSupplier(new SCSupplier("SmallComp",200));
+        montadora.hireSupplier(new TireSupplier("TireSupplier",200));
+        montadora.hireSupplier(new EngineSupplier("EngineSupplier",200));
+
+        double compra6 = montadora.getEletronics().buyComponent(20,50000);
+        montadora.test(new SUV(200));
+        montadora.makeCar(2,new SUV(200));
+
 
         montadora.writeEmployee("Joao Ricardo","1234","JoaoRic","19/10/2001","Homem");
         montadora.readEmployees();
@@ -52,8 +50,6 @@ public class Main extends JFrame {
         montadora.decreaseSaldo(compra);
         montadora.decreaseSaldo(compra2);
         System.out.println(montadora.getSaldo());
-        montadora.hireSupplier(new SCSupplier("Small Components",300));
-        montadora.hireSupplier(new ElectronicsSupplier("Electronics",1000));
         double compra3 = montadora.getSmallComps().buyComponent(5,50000);
         double compra4 = montadora.getEletronics().buyComponent(12,50000);
         System.out.println(montadora.getTires().getComponent().getStock());

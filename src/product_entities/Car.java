@@ -13,9 +13,12 @@ public abstract class Car {
     protected String color;
     protected int chassi;
 
-    protected Component components;
+    protected int tireCount = 5;
+    protected int scCompCount;
+    protected int engineCount = 1;
+    protected int electronicsCount;
+
     protected Random random = new Random();
-    //protected ArrayList<Components> components;
 
     public String getName(){return name;}
 
@@ -35,7 +38,19 @@ public abstract class Car {
         return chassi;
     }
 
-    //public ArrayList<Components> getComponents() {
-    //    return components;
-    //}
+    public int getTireCount() {
+        return tireCount;
+    }
+
+    public int getScCompCount() {
+        return scCompCount;
+    }
+
+    public int getEngineCount() {
+        return engineCount;
+    }
+
+    public int getElectronicsCount() {
+        return electronicsCount;
+    }
 }

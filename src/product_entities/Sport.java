@@ -5,6 +5,9 @@ public class Sport extends Car{
     private String name = "Sport";
     private double weight = 975;
 
+    protected int scCompCount = 50;
+    protected int electronicsCount = 60;
+
     public Sport(double price){
         this.finalPrice = price;
         this.price = price;

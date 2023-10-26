@@ -5,6 +5,9 @@ public class Sedan extends Car{
     private String name = "Sedan";
     private double weight = 1200;
 
+    protected int scCompCount = 20;
+    protected int electronicsCount = 40;
+
     public Sedan(double price){
         this.finalPrice = price;
         this.price = price;

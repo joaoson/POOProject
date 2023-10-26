@@ -41,14 +41,33 @@ public class Montadora {
     public void comprarPecas(int quantidade){
         
     }
+    public void test(Car carro){
+        if(eletronics != null){
+            System.out.println(eletronics.getComponent().getStock());
+            System.out.println(carro.getElectronicsCount()<eletronics.getComponent().getStock());
+        }
+        else{
+            System.out.println("Passou");
+        }
+    }
 
     public void makeCar(int quantity, Car carro){
         if(carro.getPrice()* quantity > saldo){
             return;
         }
-        for (int i = 0; i < quantity; i++) {
-            saldo -= carro.getPrice();
-            carros.add(carro);
+        else {
+            if (tires != null && eletronics != null && engines != null && smallComps != null) {
+                if(tires.getComponent().getStock() > carro.getTireCount() && engines.getComponent().getStock() > carro.getEngineCount() && smallComps.getComponent().getStock() > carro.getScCompCount() && eletronics.getComponent().getStock() > carro.getElectronicsCount()) {
+                    for (int i = 0; i < quantity; i++) {
+                        saldo -= carro.getPrice();
+                        carros.add(carro);
+                    }
+                }else{
+                    System.out.println("sem estoque");
+                }
+            }else {
+                System.out.println("sem supplier");
+            }
         }
     }
 
@@ -108,21 +127,6 @@ public class Montadora {
             e.printStackTrace();
         }
     }
-
-//    public void hireSupplier(Supplier supplier){
-//        if (supplier instanceof TireSupplier) {
-//            tires = supplier;
-//        }
-//        else if(supplier instanceof ElectronicsSupplier){
-//            eletronics = supplier;
-//        }
-//        else if(supplier instanceof EngineSupplier){
-//            engines = supplier;
-//        }
-//        else if(supplier instanceof SCSupplier){
-//            smallComps = supplier;
-//        }
-//    }
 
     public void hireSupplier(TireSupplier tires){
         this.tires = tires;
