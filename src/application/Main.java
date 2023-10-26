@@ -194,7 +194,7 @@ public class Main extends JFrame {
         for (List<String> tabela1 : tabela) {
             System.out.println(tabela1);
             if(jTextField1.getText().equals(tabela1.get(2)) && jTextField2.getText().equals(tabela1.get(1)) && (tabela1.get(5).equals("CEO") || tabela1.get(5).equals("Manager")) ){
-                ManagerDashboard loggedinManager = new ManagerDashboard();
+                MainInterface loggedinManager = new MainInterface();
                 loggedinManager.show();
                 dispose();
             }

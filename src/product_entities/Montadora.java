@@ -25,7 +25,7 @@ public class Montadora {
     private ElectronicsSupplier eletronics;
     private SCSupplier smallComps;
 
-    private String name;
+    private static String name;
     private double saldo;
     private static ArrayList<Employee> employees = new ArrayList<>();
     private ArrayList<Car> carros = new ArrayList<Car>();
@@ -108,7 +108,6 @@ public class Montadora {
                         engines.getComponent().deductStock(carro.getEngineCount());
                         eletronics.getComponent().deductStock(carro.getElectronicsCount());
                         smallComps.getComponent().deductStock(carro.getScCompCount());
-
                         saldo -= carro.getPrice();
                         carros.add(carro);
                     }
@@ -218,5 +217,9 @@ public class Montadora {
 
     public static ArrayList<Employee> getEmployees() {
         return Montadora.employees;
+    }
+
+    public static String getName() {
+        return Montadora.name;
     }
 }
