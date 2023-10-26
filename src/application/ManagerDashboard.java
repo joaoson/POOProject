@@ -72,7 +72,7 @@ import java.util.Vector;
             carModel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
             carModel.setText("Car model:");
 
-            quantityText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+            quantityText.setHorizontalAlignment(javax.swing.JTextField.LEFT);
             quantityText.setAlignmentX(0.1F);
             quantityText.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,7 +85,7 @@ import java.util.Vector;
             quantity.setText("Quantity:");
             quantity.setToolTipText("");
 
-            carModelText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+            carModelText.setHorizontalAlignment(javax.swing.JTextField.LEFT);
             carModelText.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     carModelTextActionPerformed(evt);
@@ -144,12 +144,9 @@ import java.util.Vector;
             tableOrders.setModel(new javax.swing.table.DefaultTableModel(
                     new Object [][] {
                             {null, null, null, null},
-                            {null, null, null, null},
-                            {null, null, null, null},
-                            {null, null, null, null}
                     },
                     new String [] {
-                            "Worker", "Car Model", "Quantity", "Cost"
+                            "Car Model", "Quantity", "Worker", "Cost"
                     }
             ));
             jScrollPane1.setViewportView(tableOrders);
@@ -289,7 +286,7 @@ import java.util.Vector;
                 DefaultTableModel model = (DefaultTableModel)tableOrders.getModel();
                 for (int i = 0; i < tableData.size(); i++){
                     Vector row = tableData.get(i);
-                    model.addRow(new Object[] {row.get(1), row.get(2), row.get(3)});
+                    model.addRow(new Object[] {row.get(0), row.get(1)});
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();
