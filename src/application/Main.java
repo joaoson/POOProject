@@ -23,7 +23,9 @@ public class Main extends JFrame {
 
 
     public static void main(String[] args) {
-        Montadora montadora = new Montadora("Renault",200000);
+        List<String> data = Main.readValues();
+        Montadora montadora = new Montadora(data.get(0),Double.parseDouble(data.get(1)));
+        montadora.updateMontadoraVariables();
         montadora.readEmployees();
         montadora.makeCar(20,new SUV(200));
         montadora.sellCar(10);
@@ -35,14 +37,6 @@ public class Main extends JFrame {
         montadora.hireSupplier(new EngineSupplier("EngineSupplier",200));
 
         montadora.buyTires(60);
-        System.out.println(montadora.getTires().getComponent().getStock());
-
-        double compra6 = montadora.getEletronics().buyComponent(20,50000);
-        System.out.println(montadora.getEletronics().getComponent().getStock());
-        montadora.getEletronics().getComponent().deductStock(6);
-        System.out.println(montadora.getEletronics().getComponent().getStock());
-        montadora.test(new SUV(200));
-        montadora.makeCar(2,new SUV(200));
 
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -77,8 +71,6 @@ public class Main extends JFrame {
                 List<String> registro = Arrays.asList(tokens);
                 tabela.add(registro);
             }
-
-
             System.out.println(arquivo);
         }
         catch(Exception e)
@@ -197,8 +189,31 @@ public class Main extends JFrame {
                 MainInterface loggedinManager = new MainInterface();
                 loggedinManager.show();
                 dispose();
+                System.out.println("passou aqui");
             }
         }
+    }
+
+    public static List<String> readValues(){
+        String NOME_ARQUIVO = "./src/application/montadoraData.csv";
+        String SEPARADOR = ",";
+        try
+        {
+            FileReader arquivo = new FileReader(NOME_ARQUIVO);
+            BufferedReader buffer = new BufferedReader(arquivo);
+
+            String Data = buffer.readLine();
+            String[] tokens = Data.split(SEPARADOR);
+            List<String> registro = Arrays.asList(tokens);
+
+            System.out.println(registro);
+            return registro;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {

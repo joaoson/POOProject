@@ -3,7 +3,6 @@ package product_entities;
 import labour_entities.Employee;
 import labour_entities.Worker;
 import product_entities.components_entities.Component;
-import product_entities.components_entities.Electronics;
 import product_entities.supplier_entities.*;
 
 import java.io.BufferedReader;
@@ -59,6 +58,7 @@ public class Montadora {
             else{
                 tires.buyComponent(quantity, this.saldo);
                 decreaseSaldo(tires.getComponent().getPrice()*quantity);
+                updateMontadoraVariables();
             }
         }
     }
@@ -70,6 +70,7 @@ public class Montadora {
             else{
                 eletronics.buyComponent(quantity, this.saldo);
                 decreaseSaldo(eletronics.getComponent().getPrice()*quantity);
+                updateMontadoraVariables();
             }
         }
     }
@@ -81,6 +82,7 @@ public class Montadora {
             else{
                 smallComps.buyComponent(quantity, this.saldo);
                 decreaseSaldo(smallComps.getComponent().getPrice()*quantity);
+                updateMontadoraVariables();
             }
         }
     }
@@ -92,6 +94,7 @@ public class Montadora {
             else{
                 engines.buyComponent(quantity, this.saldo);
                 decreaseSaldo(engines.getComponent().getPrice()*quantity);
+                updateMontadoraVariables();
             }
         }
     }
@@ -110,6 +113,7 @@ public class Montadora {
                         smallComps.getComponent().deductStock(carro.getScCompCount());
                         saldo -= carro.getPrice();
                         carros.add(carro);
+                        updateMontadoraVariables();
                     }
                 }else{
                     System.out.println("sem estoque");
@@ -127,6 +131,7 @@ public class Montadora {
         for(int i = quantity - 1; i >= 0; i--) {
             saldo += carros.get(i).getPrice();
             carros.remove(carros.get(i));
+            updateMontadoraVariables();
         }
     }
 
@@ -221,5 +226,24 @@ public class Montadora {
 
     public static String getName() {
         return Montadora.name;
+    }
+
+    public void updateMontadoraVariables(){
+
+        String NOME_ARQUIVO = "./src/application/montadoraData.csv";
+        String SEPARADOR = ",";
+        try
+        {
+            FileWriter arquivo = new FileWriter(NOME_ARQUIVO);
+
+            arquivo.write(this.name + "," + this.saldo );
+
+            arquivo.flush();
+            arquivo.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }
