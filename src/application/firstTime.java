@@ -2,6 +2,10 @@ package application;
 
 import com.mycompany.javapoo.employeeSetup;
 
+import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.List;
+
 public class firstTime extends javax.swing.JFrame {
 
     /**
@@ -99,9 +103,31 @@ public class firstTime extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-        employeeSetup firstEmp = new employeeSetup();
-        firstEmp.show();
-        dispose();
+        if(jTextField1.getText().equals("")||jTextField2.getText().equals("")){
+            System.out.println("Vazio");
+        }
+        else {
+            String NOME_ARQUIVO = "./src/application/montadoraData.csv";
+            String SEPARADOR = ",";
+            List<List<String>> tabela = new ArrayList<>();
+            try
+            {
+                FileWriter arquivo = new FileWriter(NOME_ARQUIVO);
+
+                arquivo.write(jTextField1.getText() + "," + jTextField2.getText());
+
+                arquivo.flush();
+                arquivo.close();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+
+            employeeSetup firstEmp = new employeeSetup();
+            firstEmp.show();
+            dispose();
+        }
     }
 
     /**
