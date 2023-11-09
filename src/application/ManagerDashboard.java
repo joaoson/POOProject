@@ -258,11 +258,9 @@ import java.util.Vector;
                 DefaultTableModel model = (DefaultTableModel) tableOrders.getModel ();
                 model.removeRow(row);
             }
-            System.out.println("OI");
         }
 
         private void formWindowClosing(java.awt.event.WindowEvent evt) {
-            System.out.println("rodou");
             dispose();
             DefaultTableModel model = (DefaultTableModel) tableOrders.getModel();
             Vector <Vector> tableData = model.getDataVector();
