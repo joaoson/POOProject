@@ -1,5 +1,7 @@
 package application;
 
+import com.mycompany.javapoo.employeeSetup;
+
 public class firstTime extends javax.swing.JFrame {
 
     /**
@@ -97,8 +99,9 @@ public class firstTime extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-
+        employeeSetup firstEmp = new employeeSetup();
+        firstEmp.show();
+        dispose();
     }
 
     /**

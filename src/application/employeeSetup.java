@@ -197,26 +197,31 @@ public class employeeSetup extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-        String NOME_ARQUIVO = "./src/application/funcionarios.csv";
-        String SEPARADOR = ",";
-        List<List<String>> tabela = new ArrayList<>();
-        try
-        {
-            FileWriter arquivo = new FileWriter(NOME_ARQUIVO, true);
-
-            arquivo.write("\n"+jTextField1.getText() + "," + jTextField2.getText()  + "," + jPasswordField1.getText()  + "," + jTextField5.getText() + "," +gender + "," +"CEO");
-
-            arquivo.flush();
-            arquivo.close();
+        if(jTextField1.getText().equals("")||jTextField2.getText().equals("")||jPasswordField1.getText().equals("")||jTextField5.getText().equals("")){
+            System.out.println("Vazio");
         }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
+        else {
+            String NOME_ARQUIVO = "./src/application/funcionarios.csv";
+            String SEPARADOR = ",";
+            List<List<String>> tabela = new ArrayList<>();
+            try
+            {
+                FileWriter arquivo = new FileWriter(NOME_ARQUIVO, true);
 
-        Main main = new Main();
-        main.show();
-        dispose();
+                arquivo.write("\n"+jTextField1.getText() + "," + jTextField2.getText()  + "," + jPasswordField1.getText()  + "," + jTextField5.getText() + "," +gender + "," +"CEO");
+
+                arquivo.flush();
+                arquivo.close();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+
+            Main main = new Main();
+            main.show();
+            dispose();
+        }
     }
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {
