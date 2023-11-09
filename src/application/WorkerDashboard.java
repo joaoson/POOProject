@@ -1,14 +1,13 @@
-package application;/*
+
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
-import javax.swing.table.DefaultTableModel;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.Vector;
 
 /**
  *
@@ -35,9 +34,8 @@ public class WorkerDashboard extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         research = new javax.swing.JPanel();
-        query = new javax.swing.JLabel();
+        quary = new javax.swing.JLabel();
         searchInput = new javax.swing.JTextField();
-        btnSearch = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableOrders = new javax.swing.JTable();
@@ -51,10 +49,10 @@ public class WorkerDashboard extends javax.swing.JFrame {
         research.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Research", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
         research.setOpaque(false);
 
-        query.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        query.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        query.setText("Worker's or Car's name");
-        query.setToolTipText("");
+        quary.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        quary.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        quary.setText("Worker's or Car's name");
+        quary.setToolTipText("");
 
         searchInput.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         searchInput.addActionListener(new java.awt.event.ActionListener() {
@@ -62,20 +60,12 @@ public class WorkerDashboard extends javax.swing.JFrame {
                 searchInputActionPerformed(evt);
             }
         });
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
+        searchInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchInputKeyPressed(evt);
             }
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
-
-
-        btnSearch.setText("Search");
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchInputKeyReleased(evt);
             }
         });
 
@@ -93,12 +83,10 @@ public class WorkerDashboard extends javax.swing.JFrame {
                                                 .addComponent(jLabel5)
                                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGroup(researchLayout.createSequentialGroup()
-                                                .addComponent(query)
+                                                .addComponent(quary)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(searchInput)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(16, 16, 16))))
+                                                .addComponent(searchInput, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
+                                                .addGap(169, 169, 169))))
         );
         researchLayout.setVerticalGroup(
                 researchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,13 +96,16 @@ public class WorkerDashboard extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(researchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(query, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnSearch))
+                                        .addComponent(quary, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
         tableOrders.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
+                        {null, null, null, null, null},
+                        {null, null, null, null, null},
+                        {null, null, null, null, null},
+                        {null, null, null, null, null}
                 },
                 new String [] {
                         "Worker", "Car Model", "Quantity", "Cost", "Status"
@@ -167,55 +158,17 @@ public class WorkerDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
-    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {
-
+    private void searchInputKeyPressed(java.awt.event.KeyEvent evt) {
+        // TODO add your handling code h
     }
 
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {
-        System.out.println("rodou");
-        dispose();
-        DefaultTableModel model = (DefaultTableModel) tableOrders.getModel();
-        Vector <Vector> tableData = model.getDataVector();
+    private void searchInputKeyReleased(java.awt.event.KeyEvent evt) {
+        DefaultTableModel obj = (DefaultTableModel)tableOrders.getModel();
+        TableRowSorter<DefaultTableModel> obj1 = new TableRowSorter<>(obj);
+        tableOrders.setRowSorter(obj1);
+        obj1.setRowFilter(RowFilter.regexFilter(searchInput.getText()));
 
-        //Saving of object in a file
-        try {
-            FileOutputStream file = new FileOutputStream("file.bin");
-            ObjectOutputStream output = new ObjectOutputStream (file);
-
-            //Method for serialization of object
-            output.writeObject(tableData);
-
-            output.close();
-            file.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-
-        }
     }
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {
-        try {
-            FileInputStream file = new FileInputStream("file.bin");
-            ObjectInputStream input = new ObjectInputStream (file);
-
-            //Method for serialization of object
-            Vector <Vector> tableData = (Vector<Vector>)input.readObject();
-
-            input.close();
-            file.close();
-            System.out.println("Passou");
-            DefaultTableModel model = (DefaultTableModel)tableOrders.getModel();
-            for (int i = 0; i < tableData.size(); i++){
-                Vector row = tableData.get(i);
-                model.addRow(new Object[] {row.get(0), row.get(1)});
-                //System.out.println("Passou");
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-
-        }
-    }
-
 
     /**
      * @param args the command line arguments
@@ -253,23 +206,13 @@ public class WorkerDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify
-    private javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel query;
+    private javax.swing.JLabel quary;
     private javax.swing.JPanel research;
-    private javax.swing.JTextField searchInput;
-    private javax.swing.JTable tableOrders;
+    protected javax.swing.JTextField searchInput;
+    protected javax.swing.JTable tableOrders;
     // End of variables declaration
 }
