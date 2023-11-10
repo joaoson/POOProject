@@ -258,7 +258,6 @@ public class ManagerDashboard extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) tableOrders.getModel ();
             model.removeRow(row);
         }
-        System.out.println("OI");
     }
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {
@@ -354,4 +353,5 @@ public class ManagerDashboard extends javax.swing.JFrame {
     private javax.swing.JTable tableOrders;
     // End of variables declaration
 }
+
 
