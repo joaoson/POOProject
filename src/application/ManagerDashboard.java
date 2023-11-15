@@ -1,15 +1,14 @@
 package application;
 
 import product_entities.Montadora;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Random;
 import java.util.Vector;
+import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -47,7 +46,6 @@ public class ManagerDashboard extends javax.swing.JFrame {
         carModel = new javax.swing.JLabel();
         quantityText = new javax.swing.JTextField();
         quantity = new javax.swing.JLabel();
-        carModelText = new javax.swing.JTextField();
         btnClear = new javax.swing.JButton();
         btnSend = new javax.swing.JButton();
         cmdCarro = new javax.swing.JComboBox<>();
@@ -70,7 +68,7 @@ public class ManagerDashboard extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("New Orders");
+        jLabel1.setText("Orders");
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "New Order\n", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
         jPanel3.setOpaque(false);
@@ -92,13 +90,6 @@ public class ManagerDashboard extends javax.swing.JFrame {
         quantity.setText("Quantity:");
         quantity.setToolTipText("");
 
-        carModelText.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        carModelText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                carModelTextActionPerformed(evt);
-            }
-        });
-
         btnClear.setText("Clear");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,6 +103,7 @@ public class ManagerDashboard extends javax.swing.JFrame {
                 btnSendActionPerformed(evt);
             }
         });
+
         cmdCarro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sedan", "SUV", "Sport " }));
         cmdCarro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,15 +121,14 @@ public class ManagerDashboard extends javax.swing.JFrame {
                                         .addComponent(carModel)
                                         .addComponent(quantity, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(quantityText, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(quantityText, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(cmdCarro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(carModelText))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 264, Short.MAX_VALUE)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(btnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(16, 16, 16));
+                                .addGap(16, 16, 16))
         );
         jPanel3Layout.setVerticalGroup(
                 jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,16 +136,15 @@ public class ManagerDashboard extends javax.swing.JFrame {
                                 .addGap(19, 19, 19)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(carModel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(carModelText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(btnClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(cmdCarro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(quantity, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(quantityText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(btnSend))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    );
+                        )
+        );
 
         tableOrders.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
@@ -235,10 +225,6 @@ public class ManagerDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
-    private void carModelTextActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {
         String carModel = cmdCarro.getSelectedItem().toString();
         quantityText.setText("");
@@ -253,7 +239,6 @@ public class ManagerDashboard extends javax.swing.JFrame {
             int numero = random.nextInt(0, Montadora.getEmployees().size());
             System.out.println(numero);
         }
-
         System.out.println(Montadora.getEmployees().size());
 
         if (carModel.isEmpty() || quantity.isEmpty()){
@@ -265,7 +250,6 @@ public class ManagerDashboard extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) tableOrders.getModel();
             model.addRow(new Object [] {carModel, quantity});
 
-            carModelText.setText("");
             quantityText.setText("");
         }
     }
@@ -337,11 +321,12 @@ public class ManagerDashboard extends javax.swing.JFrame {
     private void cmdCarroActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         String carModel = cmdCarro.getSelectedItem().toString();
+
     }
 
-        /**
-         * @param args the command line arguments
-         */
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -380,16 +365,13 @@ public class ManagerDashboard extends javax.swing.JFrame {
     private javax.swing.JButton carMade;
     private javax.swing.JLabel carModel;
     private javax.swing.JComboBox<String> cmdCarro;
-    private javax.swing.JTextField carModelText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel quantity;
-    private javax.swing.JButton returnButton;
     private javax.swing.JTextField quantityText;
+    private javax.swing.JButton returnButton;
     private javax.swing.JTable tableOrders;
     // End of variables declaration
 }
-
-
