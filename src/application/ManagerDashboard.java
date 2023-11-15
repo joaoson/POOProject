@@ -336,6 +336,7 @@ public class ManagerDashboard extends javax.swing.JFrame {
         this.hide();
         MainInterface frm = new MainInterface();
         frm.setVisible(true);
+        dispose();
     }
 
     private void cmdCarroActionPerformed(java.awt.event.ActionEvent evt) {
