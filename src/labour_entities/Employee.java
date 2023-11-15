@@ -17,4 +17,8 @@ public abstract class Employee {
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
     }
+
+    public String getName() {
+        return name;
+    }
 }

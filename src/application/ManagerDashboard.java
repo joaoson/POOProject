@@ -1,6 +1,8 @@
 package application;
 
 import product_entities.Montadora;
+import product_entities.SUV;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.io.FileInputStream;
@@ -11,6 +13,8 @@ import java.util.Vector;
 import java.util.Random;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
+import static java.lang.Double.parseDouble;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -232,12 +236,18 @@ public class ManagerDashboard extends javax.swing.JFrame {
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {
         String carModel = cmdCarro.getSelectedItem().toString();
+        double price = 0;
+        if (carModel.equals("SUV")){
+            SUV suv = new SUV();
+            price = suv.getPrice();
+        }
         String quantity = quantityText.getText();
-
+        int numero = 0;
+        String nome = "Default";
         Random random = new Random();
         if(Montadora.getEmployees().size() != 0){
-            int numero = random.nextInt(0, Montadora.getEmployees().size());
-            System.out.println(numero);
+            numero = random.nextInt(0, Montadora.getEmployees().size());
+            nome = Montadora.getEmployees().get(numero).getName();
         }
         System.out.println(Montadora.getEmployees().size());
 
@@ -248,7 +258,7 @@ public class ManagerDashboard extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
         } else {
             DefaultTableModel model = (DefaultTableModel) tableOrders.getModel();
-            model.addRow(new Object [] {carModel, quantity});
+            model.addRow(new Object [] {carModel, quantity,numero,price*parseDouble(quantity)});
 
             quantityText.setText("");
         }

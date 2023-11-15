@@ -2,10 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.javapoo;
+package application;
 
 import application.Main;
 
+import javax.swing.*;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -199,7 +200,10 @@ public class employeeSetup extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         if(jTextField1.getText().equals("")||jTextField2.getText().equals("")||jPasswordField1.getText().equals("")||jTextField5.getText().equals("")){
-            System.out.println("Vazio");
+            JOptionPane.showMessageDialog(this,
+                    "Please fill in all the fields in order to add the new employee.",
+                    "Try again",
+                    JOptionPane.ERROR_MESSAGE);
         }
         else {
             String NOME_ARQUIVO = "./src/application/funcionarios.csv";

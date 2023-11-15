@@ -186,7 +186,6 @@ public class Main extends JFrame {
         boolean loggedinManager = false;
         boolean loggedinWorker = false;
         boolean wrongPassword = false;
-        boolean wrongCredentials = true;
         for (List<String> tabela1 : tabela) {
              if(jTextField1.getText().equals(tabela1.get(2)) && jTextField2.getText().equals(tabela1.get(1)) && (tabela1.get(5).equals("CEO") || tabela1.get(5).equals("Manager")) ){
                 loggedinManager = true;

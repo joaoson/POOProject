@@ -1,6 +1,5 @@
 package application;
 
-import com.mycompany.javapoo.employeeSetup;
 
 import java.io.FileWriter;
 import java.util.ArrayList;
