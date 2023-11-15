@@ -2,6 +2,8 @@ package application;
 
 import product_entities.Montadora;
 import product_entities.SUV;
+import product_entities.Sedan;
+import product_entities.Sport;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -240,6 +242,14 @@ public class ManagerDashboard extends javax.swing.JFrame {
         if (carModel.equals("SUV")){
             SUV suv = new SUV();
             price = suv.getPrice();
+        }
+        else if (carModel.equals("Sedan")){
+            Sedan sedan = new Sedan();
+            price = sedan.getPrice();
+        }
+        else if (carModel.equals("Sport")){
+            Sport sport = new Sport();
+            price = sport.getPrice();
         }
         String quantity = quantityText.getText();
         int numero = 0;
