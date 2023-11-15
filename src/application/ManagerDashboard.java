@@ -268,7 +268,7 @@ public class ManagerDashboard extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
         } else {
             DefaultTableModel model = (DefaultTableModel) tableOrders.getModel();
-            model.addRow(new Object [] {carModel, quantity,numero,price*parseDouble(quantity)});
+            model.addRow(new Object [] {carModel, quantity,nome,price*parseDouble(quantity)});
 
             quantityText.setText("");
         }

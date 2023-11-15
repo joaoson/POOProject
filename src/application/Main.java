@@ -1,9 +1,6 @@
 package application;
 
-import product_entities.Car;
-import product_entities.Montadora;
-import product_entities.SUV;
-import product_entities.Sedan;
+import product_entities.*;
 import product_entities.supplier_entities.ElectronicsSupplier;
 import product_entities.supplier_entities.EngineSupplier;
 import product_entities.supplier_entities.SCSupplier;
@@ -28,6 +25,8 @@ public class Main extends JFrame {
         montadora.updateMontadoraVariables();
         montadora.readEmployees();
         montadora.makeCar(20,new SUV(200));
+        montadora.makeCar(10,new Sedan(100));
+        montadora.makeCar(10,new Sport(300));
         montadora.sellCar(10);
         montadora.sellCar(10);
 
