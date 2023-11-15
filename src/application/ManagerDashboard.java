@@ -313,7 +313,7 @@ public class ManagerDashboard extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel)tableOrders.getModel();
             for (int i = 0; i < tableData.size(); i++){
                 Vector row = tableData.get(i);
-                model.addRow(new Object[] {row.get(0), row.get(1)});
+                model.addRow(new Object[] {row.get(0), row.get(1),row.get(2), row.get(3)});
             }
         } catch (Exception ex) {
             ex.printStackTrace();
