@@ -183,14 +183,37 @@ public class Main extends JFrame {
     }// </editor-fold>
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+        boolean loggedinManager = false;
+        boolean loggedinWorker = false;
+        boolean wrongPassword = false;
+        boolean wrongCredentials = true;
         for (List<String> tabela1 : tabela) {
-            System.out.println(tabela1);
-            if(jTextField1.getText().equals(tabela1.get(2)) && jTextField2.getText().equals(tabela1.get(1)) && (tabela1.get(5).equals("CEO") || tabela1.get(5).equals("Manager")) ){
-                MainInterface loggedinManager = new MainInterface();
-                loggedinManager.show();
-                dispose();
-                System.out.println("passou aqui");
+             if(jTextField1.getText().equals(tabela1.get(2)) && jTextField2.getText().equals(tabela1.get(1)) && (tabela1.get(5).equals("CEO") || tabela1.get(5).equals("Manager")) ){
+                loggedinManager = true;
+            } else if (jTextField1.getText().equals(tabela1.get(2)) && jTextField2.getText().equals(tabela1.get(1)) && tabela1.get(5).equals("Worker")){
+                 loggedinWorker = true;
+            } else if (jTextField1.getText().equals(tabela1.get(2))){
+                wrongPassword = true;
             }
+        }
+        if(loggedinManager == true){
+            MainInterface loggedinManagerInt = new MainInterface();
+            loggedinManagerInt.show();
+            dispose();
+            System.out.println("passou aqui");
+        } else if (loggedinWorker == true) {
+            
+        } else if (wrongPassword == true) {
+            JOptionPane.showMessageDialog(this,
+                    "Incorrect password, please try again.",
+                    "Try again",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+            JOptionPane.showMessageDialog(this,
+                    "User not registered, please try using different login credentials",
+                    "Try again",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
