@@ -21,4 +21,6 @@ public abstract class Employee {
     public String getName() {
         return name;
     }
+
+    public abstract String accessLevel();
 }

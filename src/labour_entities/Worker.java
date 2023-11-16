@@ -6,4 +6,8 @@ public class Worker extends Employee{
     public Worker(String name, String password, String login, String dateOfBirth, String gender) {
         super(name, password, login, dateOfBirth, gender);
     }
+
+    public String accessLevel() {
+        return "Worker Access Level, viewing of orders allowed";
+    }
 }

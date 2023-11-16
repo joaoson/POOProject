@@ -239,22 +239,25 @@ public class ManagerDashboard extends javax.swing.JFrame {
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {
         String carModel = cmdCarro.getSelectedItem().toString();
         double price = 0;
-        if (carModel.equals("SUV")){
-            SUV suv = new SUV();
-            price = suv.getPrice();
-        }
-        else if (carModel.equals("Sedan")){
-            Sedan sedan = new Sedan();
-            price = sedan.getPrice();
-        }
-        else if (carModel.equals("Sport")){
-            Sport sport = new Sport();
-            price = sport.getPrice();
+        switch (carModel) {
+            case "SUV" -> {
+                SUV suv = new SUV();
+                price = suv.getPrice();
+            }
+            case "Sedan" -> {
+                Sedan sedan = new Sedan();
+                price = sedan.getPrice();
+            }
+            case "Sport" -> {
+                Sport sport = new Sport();
+                price = sport.getPrice();
+            }
         }
         String quantity = quantityText.getText();
         int numero = 0;
         String nome = "Default";
         Random random = new Random();
+        Montadora.readEmployees();
         if(!Montadora.getEmployees().isEmpty()){
             numero = random.nextInt(0, Montadora.getEmployees().size());
             nome = Montadora.getEmployees().get(numero).getName();
