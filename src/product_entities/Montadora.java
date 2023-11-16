@@ -22,8 +22,11 @@ public class Montadora {
         updateMontadoraSuppliers();
         System.out.println(Montadora.getEletronics());
         updateMontadoraVariables();
+        setCarros();
     }
-
+    private Car suv;
+    private Car sedan;
+    private Car sport;
     private static TireSupplier tires;
     private static EngineSupplier engines;
     private static ElectronicsSupplier eletronics;
@@ -295,4 +298,9 @@ public class Montadora {
             e.printStackTrace();
         }
     }
-}
+
+    public void setCarros() {
+        suv = new SUV(200);
+        sedan = new Sedan(100);
+        sport = new Sport(300);
+    }}

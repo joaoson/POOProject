@@ -190,7 +190,6 @@ public class Main extends JFrame {
             MainInterface loggedinManagerInt = new MainInterface();
             loggedinManagerInt.show();
             dispose();
-            System.out.println("passou aqui");
         } else if (loggedinWorker == true) {
             
         } else if (wrongPassword == true) {

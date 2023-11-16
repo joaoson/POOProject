@@ -110,7 +110,7 @@ public class ManagerDashboard extends javax.swing.JFrame {
             }
         });
 
-        cmdCarro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sedan", "SUV", "Sport " }));
+        cmdCarro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sedan", "SUV", "Sport" }));
         cmdCarro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdCarroActionPerformed(evt);
@@ -336,11 +336,28 @@ public class ManagerDashboard extends javax.swing.JFrame {
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        this.hide();
         MainInterface frm = new MainInterface();
-        frm.setVisible(true);
+        frm.show();
         dispose();
+        DefaultTableModel model = (DefaultTableModel) tableOrders.getModel();
+        Vector <Vector> tableData = model.getDataVector();
+
+        //Saving of object in a file
+        try {
+            FileOutputStream file = new FileOutputStream("file.bin");
+            ObjectOutputStream output = new ObjectOutputStream (file);
+
+            //Method for serialization of object
+            output.writeObject(tableData);
+
+            output.close();
+            file.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+
+        }
     }
+
 
     private void cmdCarroActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
