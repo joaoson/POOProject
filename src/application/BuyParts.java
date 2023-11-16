@@ -8,6 +8,7 @@ import application.error.EmptyDataField;
 import product_entities.Montadora;
 
 import javax.swing.*;
+import java.io.FileWriter;
 
 /**
  *
@@ -192,6 +193,24 @@ public class BuyParts extends javax.swing.JFrame {
                         jLabel13.setText(String.valueOf(Montadora.getTires().getComponent().getStock()));
                     }
                     break;
+            }
+            String NOME_ARQUIVO = "./src/application/components.csv";
+            String SEPARADOR = ",";
+            try {
+                FileWriter arquivo = new FileWriter(NOME_ARQUIVO);
+
+                arquivo.write("Electronic Components"+","+ "Engines"+","+ "Small Components"+","+ "Tires" + "\n");
+                arquivo.write(Montadora.getEletronics().getComponent().getStock() + "," + Montadora.getEngines().getComponent().getStock() + "," + Montadora.getSmallComps().getComponent().getStock() + "," + Montadora.getTires().getComponent().getStock());
+
+                arquivo.flush();
+                arquivo.close();
+
+                JOptionPane.showMessageDialog(this,
+                        "The purchase has been successful.",
+                        "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
         catch (EmptyDataField e){

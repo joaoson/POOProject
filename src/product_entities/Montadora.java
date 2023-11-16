@@ -18,6 +18,7 @@ public class Montadora {
         this.name = name;
         this.saldo = saldo;
         updateMontadoraSuppliers();
+        System.out.println(Montadora.getEletronics());
         updateMontadoraVariables();
     }
 

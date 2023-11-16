@@ -5,12 +5,12 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class firstTime extends javax.swing.JFrame {
+public class FirstTime extends javax.swing.JFrame {
 
     /**
      * Creates new form First
      */
-    public firstTime() {
+    public FirstTime() {
         initComponents();
     }
 
@@ -124,7 +124,7 @@ public class firstTime extends javax.swing.JFrame {
                 e.printStackTrace();
             }
 
-            employeeSetup firstEmp = new employeeSetup();
+            EmployeeSetup firstEmp = new EmployeeSetup();
             firstEmp.show();
             dispose();
         }
@@ -147,20 +147,20 @@ public class firstTime extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(firstTime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FirstTime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(firstTime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FirstTime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(firstTime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FirstTime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(firstTime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FirstTime.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new firstTime().setVisible(true);
+                new FirstTime().setVisible(true);
             }
         });
     }
