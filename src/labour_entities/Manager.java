@@ -12,4 +12,9 @@ public class Manager extends Employee{
     public String accessLevel() {
         return "Manager Access Level, creation and viewing of employees allowed";
     }
+
+    @Override
+    public String getPosition(){
+        return "Manager";
+    }
 }

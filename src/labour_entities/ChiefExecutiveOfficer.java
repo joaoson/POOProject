@@ -5,7 +5,13 @@ public class ChiefExecutiveOfficer extends Manager{
         super(name, password, login, dateOfBirth, gender);
     }
 
+    @Override
     public String accessLevel() {
         return "CEO Access Level, all functions within the app are allowed";
+    }
+
+    @Override
+    public String getPosition(){
+        return "CEO";
     }
 }

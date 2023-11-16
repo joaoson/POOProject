@@ -1,6 +1,8 @@
 package product_entities;
 
+import labour_entities.ChiefExecutiveOfficer;
 import labour_entities.Employee;
+import labour_entities.Manager;
 import labour_entities.Worker;
 import product_entities.components_entities.Component;
 import product_entities.supplier_entities.*;
@@ -174,8 +176,24 @@ public class Montadora {
                 String[] tokens = linha.split(SEPARADOR);
                 List<String> registro = Arrays.asList(tokens);
                 tabela.add(registro);
-                Employee funcionario = new Worker(registro.get(0),registro.get(1),registro.get(2),registro.get(3),registro.get(4));
-                employees.add(funcionario);
+                System.out.println(registro.get(5));
+                switch (registro.get(5)){
+                    case "CEO":
+                        Employee funcionario = new ChiefExecutiveOfficer(registro.get(0),registro.get(1),registro.get(2),registro.get(3),registro.get(4));
+                        employees.add(funcionario);
+                        break;
+                    case "Manager":
+                        Employee funcionario2 = new Manager(registro.get(0),registro.get(1),registro.get(2),registro.get(3),registro.get(4));
+                        employees.add(funcionario2);
+                        break;
+                    case "Worker":
+                        Employee funcionario3 = new Worker(registro.get(0),registro.get(1),registro.get(2),registro.get(3),registro.get(4));
+                        employees.add(funcionario3);
+                        break;
+                }
+
+//                Employee funcionario = new Worker(registro.get(0),registro.get(1),registro.get(2),registro.get(3),registro.get(4));
+//                employees.add(funcionario);
             }
         }
         catch(Exception e)

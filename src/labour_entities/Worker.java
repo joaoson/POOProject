@@ -7,7 +7,13 @@ public class Worker extends Employee{
         super(name, password, login, dateOfBirth, gender);
     }
 
+    @Override
     public String accessLevel() {
         return "Worker Access Level, viewing of orders allowed";
+    }
+
+    @Override
+    public String getPosition(){
+        return "Worker";
     }
 }

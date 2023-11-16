@@ -22,5 +22,19 @@ public abstract class Employee {
         return name;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public abstract String getPosition();
+
     public abstract String accessLevel();
 }

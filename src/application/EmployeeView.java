@@ -5,8 +5,16 @@ package application;
 * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
 */
 
+import labour_entities.Employee;
 import product_entities.Montadora;
+
+import java.io.FileInputStream;
+import javax.swing.table.DefaultTableModel;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.Vector;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -48,6 +56,12 @@ private void initComponents() {
     returnButton.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             returnButtonActionPerformed(evt);
+        }
+    });
+
+    addWindowListener(new java.awt.event.WindowAdapter() {
+        public void windowOpened(java.awt.event.WindowEvent evt) {
+            formWindowOpened(evt);
         }
     });
 
@@ -108,13 +122,10 @@ private void initComponents() {
                                     .addComponent(quary, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addContainerGap(22, Short.MAX_VALUE))
     );
+    Montadora.readEmployees();
 
     tableEmployees.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                    {null, null, null, null, null},
-                    {null, null, null, null, null},
-                    {null, null, null, null, null},
-                    {null, null, null, null, null}
             },
             new String [] {
                     "Name", "Login", "Birthday", "Gender", "Position"
@@ -157,10 +168,9 @@ private void initComponents() {
 
 private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {
     // TODO add your handling code here:
-    this.toBack();
-    setVisible(false);
-    new MainInterface ().toFront();
-    new MainInterface().setState(java.awt.Frame.NORMAL);
+    MainInterface main = new MainInterface();
+    main.show();
+    dispose();
 }
 
 private void searchInputActionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,6 +187,30 @@ private void searchInputKeyReleased(java.awt.event.KeyEvent evt) {
     tableEmployees.setRowSorter(obj1);
     obj1.setRowFilter(RowFilter.regexFilter(searchInput.getText()));
 }
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {
+        try {
+//            FileInputStream file = new FileInputStream("file.bin");
+//            ObjectInputStream input = new ObjectInputStream (file);
+//
+//            //Method for serialization of object
+//            Vector <Vector> tableData = (Vector<Vector>)input.readObject();
+//
+//            input.close();
+//            file.close();
+            Montadora.readEmployees();
+            DefaultTableModel model = (DefaultTableModel)tableEmployees.getModel();
+            for (Employee employee : Montadora.getEmployees()){
+                System.out.println(employee.getName());
+                model.addRow(new Object[] {employee.getName(), employee.getLogin(),employee.getDateOfBirth(), employee.getGender(), employee.getPosition()});
+
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+
+        }
+    }
 
 /**
  * @param args the command line arguments
@@ -211,14 +245,6 @@ public static void main(String args[]) {
             new EmployeeView().setVisible(true);
         }
     });
-    Montadora.readEmployees();
-    int numero = 0;
-    String nome = "Default";
-    Random random = new Random();
-    if(!Montadora.getEmployees().isEmpty()){
-        numero = random.nextInt(0, Montadora.getEmployees().size());
-        nome = Montadora.getEmployees().get(numero).getName();
-    }
 }
 
 
