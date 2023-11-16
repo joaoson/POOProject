@@ -9,6 +9,7 @@ import product_entities.Montadora;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.FileWriter;
 import java.util.List;
 /**
  *
@@ -211,7 +212,66 @@ public class MainInterface extends javax.swing.JFrame {
     }
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        String NOME_ARQUIVO = "./src/application/montadoraData.csv";
+        String SEPARADOR = ",";
+        try
+        {
+            FileWriter arquivo = new FileWriter(NOME_ARQUIVO);
+
+            arquivo.write("");
+
+            arquivo.flush();
+            arquivo.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        String NOME_ARQUIVO2 = "./src/application/components.csv";
+        String SEPARADOR2 = ",";
+        try
+        {
+            FileWriter arquivo = new FileWriter(NOME_ARQUIVO2);
+
+            arquivo.write("");
+
+            arquivo.flush();
+            arquivo.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        String NOME_ARQUIVO3 = "./src/application/ordersTable.csv";
+        String SEPARADOR3 = ",";
+        try
+        {
+            FileWriter arquivo = new FileWriter(NOME_ARQUIVO3);
+
+            arquivo.write("");
+
+            arquivo.flush();
+            arquivo.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        String NOME_ARQUIVO4 = "./src/application/suppliers.csv";
+        String SEPARADOR4 = ",";
+        try
+        {
+            FileWriter arquivo = new FileWriter(NOME_ARQUIVO4);
+
+            arquivo.write("");
+
+            arquivo.flush();
+            arquivo.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {
