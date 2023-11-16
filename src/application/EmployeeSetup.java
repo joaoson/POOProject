@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
+import product_entities.Montadora;
 
 /**
  *
@@ -211,10 +212,11 @@ public class EmployeeSetup extends javax.swing.JFrame {
             {
                 FileWriter arquivo = new FileWriter(NOME_ARQUIVO, true);
 
-                arquivo.write("\n"+jTextField1.getText() + "," + jTextField2.getText()  + "," + jPasswordField1.getText()  + "," + jTextField5.getText() + "," +gender + "," +"CEO");
+                arquivo.write("\n"+jTextField1.getText() + "," + jPasswordField1.getText()  + "," + jTextField2.getText()  + "," + jTextField5.getText() + "," +gender + "," +"CEO");
 
                 arquivo.flush();
                 arquivo.close();
+                Montadora.readEmployees();
             }
             catch(Exception e)
             {

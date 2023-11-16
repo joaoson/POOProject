@@ -273,7 +273,7 @@ public class EmployeeAddingPage extends javax.swing.JFrame {
             {
                 FileWriter arquivo = new FileWriter(NOME_ARQUIVO, true);
 
-                arquivo.write("\n"+jTextField1.getText() + "," + jTextField2.getText()  + "," + jPasswordField1.getText()  + "," + jTextField5.getText() + "," +gender + "," + jobTitle);
+                arquivo.write("\n"+jTextField1.getText() + "," + jPasswordField1.getText()  + "," + jTextField2.getText()  + "," + jTextField5.getText() + "," +gender + "," + jobTitle);
 
                 arquivo.flush();
                 arquivo.close();

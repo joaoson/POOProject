@@ -157,7 +157,7 @@ public class Montadora {
         }
     }
 
-    public void readEmployees(){
+    public static void readEmployees(){
         employees.clear();
         String NOME_ARQUIVO = "./src/application/funcionarios.csv";
         String SEPARADOR = ",";
