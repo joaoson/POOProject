@@ -4,6 +4,11 @@ import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.Vector;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -43,6 +48,15 @@ public class WorkerDashboard extends javax.swing.JFrame {
         returnButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -104,10 +118,6 @@ public class WorkerDashboard extends javax.swing.JFrame {
 
         tableOrders.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null},
-                        {null, null, null, null, null}
                 },
                 new String [] {
                         "Worker", "Car Model", "Quantity", "Cost", "Status"
@@ -186,9 +196,9 @@ public class WorkerDashboard extends javax.swing.JFrame {
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        this.hide();
         MainInterface frm = new MainInterface();
-        frm.setVisible(true);
+        frm.show();
+        dispose();
     }
 
     /**
@@ -224,6 +234,49 @@ public class WorkerDashboard extends javax.swing.JFrame {
                 new WorkerDashboard().setVisible(true);
             }
         });
+    }
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {
+        dispose();
+        DefaultTableModel model = (DefaultTableModel) tableOrders.getModel();
+        Vector <Vector> tableData = model.getDataVector();
+
+        //Saving of object in a file
+        try {
+            FileOutputStream file = new FileOutputStream("file.bin");
+            ObjectOutputStream output = new ObjectOutputStream (file);
+
+            //Method for serialization of object
+            output.writeObject(tableData);
+
+            output.close();
+            file.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+
+        }
+    }
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {
+        try {
+            FileInputStream file = new FileInputStream("file.bin");
+            ObjectInputStream input = new ObjectInputStream (file);
+
+            //Method for serialization of object
+            Vector <Vector> tableData = (Vector<Vector>)input.readObject();
+
+            input.close();
+            file.close();
+
+            DefaultTableModel model = (DefaultTableModel)tableOrders.getModel();
+            for (int i = 0; i < tableData.size(); i++){
+                Vector row = tableData.get(i);
+                model.addRow(new Object[] {row.get(0), row.get(1),row.get(2), row.get(3)});
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+
+        }
     }
 
     // Variables declaration - do not modify
