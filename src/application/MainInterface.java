@@ -5,6 +5,7 @@ package application;/*
 
 import application.Main;
 
+import java.awt.event.ActionEvent;
 import java.util.List;
 
 /**
@@ -102,8 +103,9 @@ public class MainInterface extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-        ManagerDashboard order = new ManagerDashboard();
+    private void jButton1ActionPerformed(ActionEvent evt) {
+        //ManagerDashboard order = new ManagerDashboard();
+        BuyParts order = new BuyParts();
         order.show();
         dispose();
     }

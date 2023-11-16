@@ -255,7 +255,7 @@ public class ManagerDashboard extends javax.swing.JFrame {
         int numero = 0;
         String nome = "Default";
         Random random = new Random();
-        if(Montadora.getEmployees().size() != 0){
+        if(!Montadora.getEmployees().isEmpty()){
             numero = random.nextInt(0, Montadora.getEmployees().size());
             nome = Montadora.getEmployees().get(numero).getName();
         }

@@ -22,20 +22,12 @@ public class Main extends JFrame {
     public static void main(String[] args) {
         List<String> data = Main.readValues();
         Montadora montadora = new Montadora(data.get(0),Double.parseDouble(data.get(1)));
-        montadora.updateMontadoraVariables();
         montadora.readEmployees();
         montadora.makeCar(20,new SUV(200));
         montadora.makeCar(10,new Sedan(100));
         montadora.makeCar(10,new Sport(300));
         montadora.sellCar(10);
         montadora.sellCar(10);
-
-        montadora.hireSupplier(new ElectronicsSupplier("Electronic",200));
-        montadora.hireSupplier(new SCSupplier("SmallComp",200));
-        montadora.hireSupplier(new TireSupplier("TireSupplier",200));
-        montadora.hireSupplier(new EngineSupplier("EngineSupplier",200));
-
-        montadora.buyTires(60);
 
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {

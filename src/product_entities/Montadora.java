@@ -17,15 +17,17 @@ public class Montadora {
     public Montadora(String name, double saldo){
         this.name = name;
         this.saldo = saldo;
+        updateMontadoraSuppliers();
+        updateMontadoraVariables();
     }
 
-    private TireSupplier tires;
-    private EngineSupplier engines;
-    private ElectronicsSupplier eletronics;
-    private SCSupplier smallComps;
+    private static TireSupplier tires;
+    private static EngineSupplier engines;
+    private static ElectronicsSupplier eletronics;
+    private static SCSupplier smallComps;
 
     private static String name;
-    private double saldo;
+    private static double saldo;
     private static ArrayList<Employee> employees = new ArrayList<>();
     private ArrayList<Car> carros = new ArrayList<Car>();
 
@@ -40,63 +42,61 @@ public class Montadora {
     public void comprarPecas(int quantidade){
         
     }
-    public void test(Car carro){
-        if(eletronics != null){
-            System.out.println(eletronics.getComponent().getStock());
-            System.out.println(carro.getElectronicsCount()<eletronics.getComponent().getStock());
-        }
-        else{
-            System.out.println("Passou");
-        }
-    }
-
-    public void buyTires(int quantity){
+    public static boolean buyTires(int quantity){
         if(tires != null){
             if(tires.getComponent().getPrice()*quantity>saldo){
-                return;
+                return false;
             }
             else{
-                tires.buyComponent(quantity, this.saldo);
+                tires.buyComponent(quantity, Montadora.saldo);
                 decreaseSaldo(tires.getComponent().getPrice()*quantity);
                 updateMontadoraVariables();
+                return true;
             }
         }
+        return false;
     }
-    public void buyElectronics(int quantity){
+    public static boolean buyElectronics(int quantity){
         if(eletronics != null){
             if(eletronics.getComponent().getPrice()*quantity>saldo){
-                return;
+                return false;
             }
             else{
-                eletronics.buyComponent(quantity, this.saldo);
+                eletronics.buyComponent(quantity, Montadora.saldo);
                 decreaseSaldo(eletronics.getComponent().getPrice()*quantity);
                 updateMontadoraVariables();
+                return true;
             }
         }
+        return false;
     }
-    public void buySmallComp(int quantity){
+    public static boolean buySmallComp(int quantity){
         if(smallComps != null){
             if(smallComps.getComponent().getPrice()*quantity>saldo){
-                return;
+                return false;
             }
             else{
-                smallComps.buyComponent(quantity, this.saldo);
+                smallComps.buyComponent(quantity, Montadora.saldo);
                 decreaseSaldo(smallComps.getComponent().getPrice()*quantity);
                 updateMontadoraVariables();
+                return true;
             }
         }
+        return false;
     }
-    public void buyEngine(int quantity){
+    public static boolean buyEngine(int quantity){
         if(engines != null){
             if(engines.getComponent().getPrice()*quantity>saldo){
-                return;
+                return false;
             }
             else{
-                engines.buyComponent(quantity, this.saldo);
+                engines.buyComponent(quantity, Montadora.saldo);
                 decreaseSaldo(engines.getComponent().getPrice()*quantity);
                 updateMontadoraVariables();
+                return true;
             }
         }
+        return false;
     }
 
     public void makeCar(int quantity, Car carro){
@@ -183,41 +183,39 @@ public class Montadora {
         }
     }
 
-    public void hireSupplier(TireSupplier tires){
-        this.tires = tires;
+    public static void hireSupplier(TireSupplier tires){
+        Montadora.tires = tires;
     }
-    public void hireSupplier(EngineSupplier engine){
-        this.engines = engine;
+    public static void hireSupplier(EngineSupplier engine){Montadora.engines = engine;}
+    public static void hireSupplier(SCSupplier smallC){
+        Montadora.smallComps = smallC;
     }
-    public void hireSupplier(SCSupplier smallC){
-        this.smallComps = smallC;
-    }
-    public void hireSupplier(ElectronicsSupplier eletronics){
-        this.eletronics = eletronics;
+    public static void hireSupplier(ElectronicsSupplier eletronics){
+        Montadora.eletronics = eletronics;
     }
 
     public int checkStockPart(Component component){
         return component.getStock();
     }
 
-    public TireSupplier getTires() {
-        return tires;
+    public static TireSupplier getTires() {
+        return Montadora.tires;
     }
 
-    public EngineSupplier getEngines() {
-        return engines;
+    public static EngineSupplier getEngines() {
+        return Montadora.engines;
     }
 
-    public ElectronicsSupplier getEletronics() {
-        return eletronics;
+    public static ElectronicsSupplier getEletronics() {
+        return Montadora.eletronics;
     }
 
-    public SCSupplier getSmallComps() {
-        return smallComps;
+    public static SCSupplier getSmallComps() {
+        return Montadora.smallComps;
     }
 
-    public void decreaseSaldo(double valor) {
-        this.saldo -= valor;
+    public static void decreaseSaldo(double valor) {
+        Montadora.saldo -= valor;
     }
 
     public static ArrayList<Employee> getEmployees() {
@@ -228,7 +226,7 @@ public class Montadora {
         return Montadora.name;
     }
 
-    public void updateMontadoraVariables(){
+    public static void updateMontadoraVariables(){
 
         String NOME_ARQUIVO = "./src/application/montadoraData.csv";
         String SEPARADOR = ",";
@@ -236,10 +234,42 @@ public class Montadora {
         {
             FileWriter arquivo = new FileWriter(NOME_ARQUIVO);
 
-            arquivo.write(this.name + "," + this.saldo );
+            arquivo.write(Montadora.name + "," + Montadora.saldo );
 
             arquivo.flush();
             arquivo.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static void updateMontadoraSuppliers(){
+
+        String NOME_ARQUIVO = "./src/application/suppliers.csv";
+        String SEPARADOR = ",";
+        try
+        {
+            FileReader arquivo = new FileReader(NOME_ARQUIVO);
+            BufferedReader buffer = new BufferedReader(arquivo);
+            List<String> values = new ArrayList<>();
+            List<String> names = new ArrayList<>();
+
+            String cabecalho = buffer.readLine();
+            String[] tokens1 = cabecalho.split(SEPARADOR);
+            names = Arrays.asList(tokens1);
+            while (buffer.ready()){
+                String linha = buffer.readLine();
+                String[] tokens = linha.split(SEPARADOR);
+                values = Arrays.asList(tokens);
+
+
+            }
+            hireSupplier(new ElectronicsSupplier(names.get(0),Integer.valueOf(values.get(0))));
+            hireSupplier(new EngineSupplier(names.get(1),Integer.valueOf(values.get(1))));
+            hireSupplier(new TireSupplier(names.get(2),Integer.valueOf(values.get(2))));
+            hireSupplier(new SCSupplier(names.get(3),Integer.valueOf(values.get(3))));
         }
         catch(Exception e)
         {
